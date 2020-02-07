@@ -13,6 +13,21 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
- @import "theme";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "theme";
+@import "dashboards";
+
+.navbar-inverse {
+  border: 0;
+  margin-bottom: 40px;
+}
+
+// add this class to alerts to fix their position
+.alert-growl {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 500px;
+  z-index: 1000;
+}
