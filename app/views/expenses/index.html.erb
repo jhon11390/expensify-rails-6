@@ -1,20 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <h4 class="filter-header">Transaction Type <span>Choose to filter</span></h4>
+      <h4 class="filter-header">Transaction Type <span>Selecciona para filtrar</span></h4>
+      
       <div class="list-group filter-type">
-        <a href="#" class="list-group-item">Purchase</a>
-        <a href="#" class="list-group-item">Withdrawal</a>
-        <!-- more transaction types -->
+        <%= link_to  "Purchase", expenses_path(expense_type: 'purchase'), class: "list-group-item" %>
+        <%= link_to  "Withdrawal", expenses_path(expense_type: 'withdrawal'), class: "list-group-item" %>
+        <%= link_to  "Transfer", expenses_path(expense_type: 'transfer'), class: "list-group-item" %>
+        <%= link_to  "Payment", expenses_path(expense_type: 'payment'), class: "list-group-item" %>
       </div>
 
       <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
       <div class="list-group filter-type">
-        <a href="#" class="list-group-item">Restaurants</a>
-        <a href="#" class="list-group-item">Car</a>
-        <!-- more categories  -->
+        <% @categories.each do |category|%>
+          <a href="#" class="list-group-item"><%= category.name %></a>
+        <% end %>
       </div>
     </div>
+
     <div class="col-md-9 index-data">
       <div class="row" style="margin-top: 10px;">
         <div class="summary-box col-md-4 text-center">

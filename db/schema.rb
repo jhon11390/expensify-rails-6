@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_08_073654) do
+ActiveRecord::Schema.define(version: 2020_06_09_033847) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.string "type"
+    t.text "concept"
+    t.date "date"
+    t.decimal "amount"
+    t.string "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
