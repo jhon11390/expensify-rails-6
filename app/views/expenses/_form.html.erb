@@ -1,5 +1,5 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <%= form_for @expense do |f| %>
+  <%= form_for @expense, remote: true do |f| %>
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -19,7 +19,7 @@
                   </div>
                   <div class="form-group col-md-6">
                     <%= f.label :Date %>
-                    <%= f.text_field :date, type:'date', value: "#{Time.now.strftime("%F")}" ,class: "form-control", class: "form-control"%>
+                    <%= f.text_field :date, type:'date' ,class: "form-control", class: "form-control"%>
                   </div>
                 </div>
               </div>
@@ -37,7 +37,7 @@
                   </div>
                   <div class="form-group col-md-6">
                     <%= f.label :Amount %>
-                    <%= f.number_field(:amount, value:0,class: "form-control align-right")%>
+                    <%= f.number_field(:amount, class: "form-control align-right")%>
                   </div>
                 </div>
               </div>
@@ -46,9 +46,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <%= f.submit "Create Expense", class: "btn btn-primary"%>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+

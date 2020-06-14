@@ -17,21 +17,17 @@ class ExpensesController < ApplicationController
       @expense = Expense.new(expense_params)
       if @expense.save
           redirect_to :expenses, notice: "El gasto fue publicado con éxito"
-      else
-          render :new
       end
   end
 
   def edit
-      @expense = Expense.find(params[:id])
+    @expense = Expense.find(params[:id])
   end 
 
   def update
       @expense = Expense.find(params[:id])
       if @expense.update(expense_params)
           redirect_to :expenses
-      else
-          render :edit
       end
   end
 
@@ -44,7 +40,7 @@ class ExpensesController < ApplicationController
 
   private
       def expense_params
-          params.require(:expense).permit(:type, :concept, :date, :amount)
+          params.require(:expense).permit(:type_transaction, :concept, :date, :amount, :category_id)
       end
 
 end
