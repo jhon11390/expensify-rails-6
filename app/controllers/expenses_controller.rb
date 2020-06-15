@@ -1,8 +1,17 @@
 class ExpensesController < ApplicationController
+  before_action :find_expense, only: [:edit, :update, :destroy]
+  
   def index
-    @expenses = Expense.all
+    @tab = :expenses
     @categories = Category.all
     @expense = Expense.new
+    if params[:category_id]
+      @expenses = Expense.where(category_id: params[:category_id])
+    elsif params[:type_transaction]
+      @expenses = Expense.where(type_transaction: params[:type_transaction])
+    else
+      @expenses = Expense.all
+    end
   end
 
   def show
@@ -45,6 +54,10 @@ class ExpensesController < ApplicationController
   private
       def expense_params
           params.require(:expense).permit(:type_transaction, :concept, :date, :amount, :category_id)
+      end
+
+      def find_expense
+        @expense = Expense.find(params[:id])
       end
 
 end
