@@ -1,0 +1,31 @@
+$('.modal-body p').remove()
+$('.labelDate').removeClass('text-danger')
+$('.labelConcept').removeClass('text-danger')
+$('.validateConcept').removeClass('has-error')
+$('.validateDate').removeClass('has-error')
+
+<% if @expense.errors.any? %>
+    <% @expense.errors.full_messages.each do |msg|%>
+        <% if @expense.errors.full_messages.length == 2%>
+            <% if msg == "Concept can't be blank"%>
+                $('.validateConcept').append('<p class="text-danger"><%= @expense.errors.full_messages[0]   %></p>')
+                $('.validateConcept').addClass('has-error')
+                $('.labelConcept').addClass('text-danger')
+            <% elsif msg == "Date can't be blank"%>
+                $('.validateDate').append('<p class="text-danger"><%= @expense.errors.full_messages[1] %></ p>')
+                $('.validateDate').addClass('has-error')
+                $('.labelDate').addClass('text-danger')
+            <% end %>
+        <% else %>
+            <% if msg == "Concept can't be blank"%>
+                $('.validateConcept').append('<p class="text-danger"><%= @expense.errors.full_messages[0]   %></p>')
+                $('.validateConcept').addClass('has-error')
+                $('.labelConcept').addClass('text-danger')
+            <% elsif msg == "Date can't be blank"%>
+                $('.validateDate').append('<p class="text-danger"><%= @expense.errors.full_messages[0] %></ p>')
+                $('.validateDate').addClass('has-error')
+                $('.labelDate').addClass('text-danger')
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>

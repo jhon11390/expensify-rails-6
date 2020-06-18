@@ -26,8 +26,6 @@ class ExpensesController < ApplicationController
     @expense = Expense.new(expense_params)
     if @expense.save
         redirect_to :expenses, notice: "The #{@expense.type_transaction} #{@expense.concept} for $#{@expense.amount} on #{@expense.date.strftime("%b")} #{@expense.date.strftime("%d")} was created successfully!"
-    else
-        redirect_to :expenses, alert: "The expense could not be saved"
     end
   end
 
