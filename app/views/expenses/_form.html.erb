@@ -37,7 +37,7 @@
                   </div>
                   <div class="form-group col-md-6">
                     <%= f.label :Amount %>
-                    <%= f.number_field :amount, step: 0.01, min: 0, value: 0, class: "form-control text-right" %>
+                    <%= f.number_field :amount, step: 0.01, min: 0, class: "form-control text-right" %>
                   </div>
                 </div>
               </div>
@@ -46,7 +46,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <%= f.submit "Create Expense", class: "btn btn-primary"%>
+          <%= f.submit @expense.new_record? ? "Create Expense" : "Update Expense", class: "btn btn-primary"%>
         </div>
       </div>
     </div>

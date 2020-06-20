@@ -1,5 +1,4 @@
 class ExpensesController < ApplicationController
-  before_action :find_expense, only: [:edit, :update, :destroy]
   
   def index
     @tab = :expenses
@@ -37,8 +36,6 @@ class ExpensesController < ApplicationController
     @expense = Expense.find(params[:id])
     if @expense.update(expense_params)
         redirect_to :expenses, notice: "The expense was updated successfully!"
-    else
-        redirect_to :expenses, alert: "The expense could not be update"
     end
   end
 
@@ -53,9 +50,4 @@ class ExpensesController < ApplicationController
       def expense_params
           params.require(:expense).permit(:type_transaction, :concept, :date, :amount, :category_id)
       end
-
-      def find_expense
-        @expense = Expense.find(params[:id])
-      end
-
 end
