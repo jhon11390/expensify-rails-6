@@ -212,7 +212,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.4.1)
   byebug
   capybara (>= 2.15)
-  faker
+  faker (~> 2.12)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   puma (~> 4.1)

@@ -9,7 +9,7 @@ class ExpensesController < ApplicationController
     elsif params[:type_transaction]
       @expenses = Expense.where(type_transaction: params[:type_transaction])
     else
-      @expenses = Expense.all
+      @expenses = Expense.all.order(date: :desc)
     end
   end
 
