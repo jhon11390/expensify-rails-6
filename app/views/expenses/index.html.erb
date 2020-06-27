@@ -4,10 +4,10 @@
       <h4 class="filter-header">Transaction Type <span>Selecciona para filtrar</span></h4>
       
       <div class="list-group filter-type">
-        <%= link_to  "Purchase", expenses_path(type_transaction: 'Purchase'), class: "list-group-item" %>
-        <%= link_to  "Withdrawal", expenses_path(type_transaction: 'Withdrawal'), class: "list-group-item" %>
-        <%= link_to  "Transfer", expenses_path(type_transaction: 'Transfer'), class: "list-group-item" %>
-        <%= link_to  "Payment", expenses_path(type_transaction: 'Payment'), class: "list-group-item" %>
+        <%= link_to  "Purchase", expenses_path(type_transaction: "Purchase"), class: "list-group-item" %>
+        <%= link_to  "Withdrawal", expenses_path(type_transaction: "Withdrawal"), class: "list-group-item" %>
+        <%= link_to  "Transfer", expenses_path(type_transaction: "Transfer"), class: "list-group-item" %>
+        <%= link_to  "Payment", expenses_path(type_transaction: "Payment"), class: "list-group-item" %>
       </div>
 
       <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
@@ -21,7 +21,7 @@
     <div class="col-md-9 index-data">
       <div class="row" style="margin-top: 10px;">
         <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">$ <%= @expenses.sum(:amount) %></div>
+          <div class="summary-value"><%= number_to_currency(@expenses.sum(:amount)) %></div>
           <div class="summary-label">Total</div>
         </diV>
         <div class="summary-box col-md-4 text-center">
@@ -29,7 +29,7 @@
           <div class="summary-label">Transactions</div>
         </div>
         <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">$ <%= @expenses.average(:amount) %></div>
+          <div class="summary-value"><%= number_to_currency(@expenses.average(:amount)) %></div>
           <div class="summary-label">Average</div>
         </div>
       </div>

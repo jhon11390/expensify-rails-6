@@ -8,6 +8,8 @@ class ExpensesController < ApplicationController
       @expenses = Expense.where(category_id: params[:category_id])
     elsif params[:type_transaction]
       @expenses = Expense.where(type_transaction: params[:type_transaction])
+    elsif params[:month]
+      @expenses = Expense.where("extract(month from date) = ? AND extract(year from date) = ?", params[:month], params[:year]).order(date: :asc)
     else
       @expenses = Expense.all.order(date: :desc)
     end

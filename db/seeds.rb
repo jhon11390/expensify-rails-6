@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-categories = Category.create([{ name: 'Restaurants' }, { name: 'Grocery' }, { name: 'Car' }, { name: 'Services' }, { name: 'Home' }, { name: 'Education' }, { name: 'Fun' }, { name: 'Travel' }])
+categories = Category.create!([{ name: 'Restaurants' }, { name: 'Grocery' }, { name: 'Car' }, { name: 'Services' }, { name: 'Home' }, { name: 'Education' }, { name: 'Fun' }, { name: 'Travel' }])
 
 20.times do
     Expense.create(type_transaction: 'Purchase', date: Faker::Date.between(from: 12.months.ago, to: Date.today), concept: Faker::Food.spice, category_id: 1, amount: Faker::Number.between(from: 100000, to: 2000000))
