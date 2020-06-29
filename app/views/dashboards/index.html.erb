@@ -42,7 +42,15 @@
       <div class="panel panel-default">
         <div class="panel-heading">Por Categoría</div>
         <div class="panel-body">
-          <div id="category-chart" style="height: 250px;"><%= pie_chart @per_category, prefix: "$", thousands: ",", height: "250px", donut: true%></div>
+          <div id="category-chart" style="height: 250px;"><%= pie_chart @per_category, prefix: "$", thousands: ",", height: "250px", donut: true, library: {
+            plotOptions: {
+              pie: {
+                dataLabels: {
+                  format: '<b>{point.name} </b> <b>{point.percentage:.1f} %'
+                }
+              }
+            }
+          }%></div>
         </div>
       </div>
     </div>
