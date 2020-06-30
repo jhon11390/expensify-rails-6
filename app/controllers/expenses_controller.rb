@@ -1,17 +1,19 @@
 class ExpensesController < ApplicationController
   
   def index
+    
     @tab = :expenses
     @categories = Category.all
     @expense = Expense.new
-    if params[:category_id]
-      @expenses = Expense.where(category_id: params[:category_id])
-    elsif params[:type_transaction]
-      @expenses = Expense.where(type_transaction: params[:type_transaction])
-    elsif params[:month]
-      @expenses = Expense.where("extract(month from date) = ? AND extract(year from date) = ?", params[:month], params[:year]).order(date: :asc)
-    else
-      @expenses = Expense.all.order(date: :desc)
+    @expenses = Expense.all.order(date: :desc)
+    if params[:category_id].present?
+      @expenses = @expenses.where("category_id = ?", params[:category_id])
+    end
+    if params[:type_transaction].present?
+      @expenses = @expenses.where("type_transaction = ?", params[:type_transaction])
+    end
+    if params[:month].present?
+      @expenses = @expenses.where("extract(month from date) = ? AND extract(year from date) = ?", params[:month], params[:year]).order(date: :asc)
     end
   end
 
