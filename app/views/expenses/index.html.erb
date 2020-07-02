@@ -4,16 +4,16 @@
       <%= form_tag expenses_path, method: :get do %>
         <h4 class="filter-header">Transaction Type <span>Selecciona para filtrar</span></h4>
         <div class="list-group filter-type">
-          <%= link_to "Purchase", expenses_path(type_transaction: "Purchase"), class:  "list-group-item"%>
-          <%= link_to  "Withdrawal", expenses_path(type_transaction: "Withdrawal"), class:  "list-group-item"%>
-          <%= link_to  "Transfer", expenses_path(type_transaction: "Transfer"), class:  "list-group-item"%>
-          <%= link_to  "Payment", expenses_path(type_transaction: "Payment"), class: "list-group-item"%>
+          <%= link_to "Purchase", (params[:type_transaction] == "Purchase" ? request.params.merge(type_transaction: "") : request.params.merge(type_transaction: "Purchase")), class:"list-group-item #{'active' if params[:type_transaction] == "Purchase"}"%>
+          <%= link_to  "Withdrawal", (params[:type_transaction] == "Withdrawal" ? request.params.merge(type_transaction: "") : request.params.merge(type_transaction: "Withdrawal")), class:"list-group-item #{'active' if params[:type_transaction] == "Withdrawal"}"%>
+          <%= link_to  "Transfer", (params[:type_transaction] == "Transfer" ? request.params.merge(type_transaction: "") : request.params.merge(type_transaction: "Transfer")), class:"list-group-item #{'active' if params[:type_transaction] == "Transfer"}"%>
+          <%= link_to  "Payment", (params[:type_transaction] == "Payment" ? request.params.merge(type_transaction: "") : request.params.merge(type_transaction: "Payment")), class:"list-group-item #{'active' if params[:type_transaction] == "Payment"}"%>
         </div>
 
         <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
         <div class="list-group filter-type">
           <% @categories.each do |category|%>
-            <%= link_to  category.name, expenses_path(category_id: category), class: "list-group-item"%>
+             <%= link_to category.name, (params[:category_id].to_i == category.id ? request.params.merge(category_id: "") : request.params.merge(category_id: category.id)), class:"list-group-item #{'active' if params[:category_id].to_i == category.id}"%>
           <% end %>
         </div>
       </div>
@@ -52,18 +52,18 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <li role="presentation"><%= link_to Date::MONTHNAMES[Date.today.month]+ ' ' + Date.today.year.to_s, expenses_path(month: Date.today.month, year: Date.today.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[1.month.ago.month]+ ' ' + 1.month.ago.year.to_s, expenses_path(month: 1.month.ago.month, year: 1.month.ago.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[2.month.ago.month]+ ' ' + 2.month.ago.year.to_s, expenses_path(month: 2.month.ago.month, year: 2.month.ago.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[3.month.ago.month]+ ' ' + 3.month.ago.year.to_s, expenses_path(month: 3.month.ago.month, year: 3.month.ago.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[4.month.ago.month]+ ' ' + 4.month.ago.year.to_s, expenses_path(month: 4.month.ago.month, year: 4.month.ago.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[5.month.ago.month]+ ' ' + 5.month. ago.year.to_s, expenses_path(month: 5.month.ago.month, year: 5.month.ago.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[6.month.ago.month]+ ' ' + 6.month.ago.year.to_s, expenses_path(month: 6.month.ago.month, year: 6.month.ago.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[7.month.ago.month]+ ' ' + 7.month.ago.year.to_s, expenses_path(month: 7.month.ago.month, year: 7.month.ago.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[8.month.ago.month]+ ' ' + 8.month.ago.year.to_s, expenses_path(month: 8.month.ago.month, year: 8.month.ago.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[9.month.ago.month]+ ' ' + 9.month.ago.year.to_s, expenses_path(month: 9.month.ago.month, year: 9.month.ago.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[10.month.ago.month]+ ' ' + 10.month.ago.year.to_s, expenses_path(month: 10.month.ago.month, year: 10.month.ago.year) %></li>
-                <li role="presentation"><%= link_to Date::MONTHNAMES[11.month.ago.month]+ ' ' + 11.month.ago.year.to_s, expenses_path(month: 11.month.ago.month, year: 11.month.ago.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[Date.today.month]+ ' ' + Date.today.year.to_s, (params[:month] == Date.today.month && params[:year] == Date.today.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: Date.today.month, year: Date.today.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[1.month.ago.month]+ ' ' + 1.month.ago.year.to_s, (params[:month] == 1.month.ago.month && params[:year] == 1.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 1.month.ago.month, year: 1.month.ago.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[2.month.ago.month]+ ' ' + 2.month.ago.year.to_s, (params[:month] == 2.month.ago.month && params[:year] == 2.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 2.month.ago.month, year: 2.month.ago.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[3.month.ago.month]+ ' ' + 3.month.ago.year.to_s, (params[:month] == 3.month.ago.month && params[:year] == 3.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 3.month.ago.month, year: 3.month.ago.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[4.month.ago.month]+ ' ' + 4.month.ago.year.to_s, (params[:month] == 4.month.ago.month && params[:year] == 4.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 4.month.ago.month, year: 4.month.ago.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[5.month.ago.month]+ ' ' + 5.month.ago.year.to_s, (params[:month] == 5.month.ago.month && params[:year] == 5.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 5.month.ago.month, year: 5.month.ago.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[6.month.ago.month]+ ' ' + 6.month.ago.year.to_s, (params[:month] == 6.month.ago.month && params[:year] == 6.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 6.month.ago.month, year: 6.month.ago.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[7.month.ago.month]+ ' ' + 7.month.ago.year.to_s, (params[:month] == 7.month.ago.month && params[:year] == 7.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 7.month.ago.month, year: 7.month.ago.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[8.month.ago.month]+ ' ' + 8.month.ago.year.to_s, (params[:month] == 8.month.ago.month && params[:year] == 8.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 8.month.ago.month, year: 8.month.ago.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[9.month.ago.month]+ ' ' + 9.month.ago.year.to_s, (params[:month] == 9.month.ago.month && params[:year] == 9.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 9.month.ago.month, year: 9.month.ago.year) %></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[10.month.ago.month]+ ' ' + 10.month.ago.year.to_s, (params[:month] == 10.month.ago.month && params[:year] == 10.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 10.month.ago.month, year: 10.month.ago.year)%></li>
+                <li role="presentation"><%= link_to Date::MONTHNAMES[11.month.ago.month]+ ' ' + 11.month.ago.year.to_s, (params[:month] == 11.month.ago.month && params[:year] == 11.month.ago.year) ? request.params.merge(month: "", year:"") : request.params.merge(month: 11.month.ago.month, year: 11.month.ago.year)%></li>
                 <!-- more months -->
               </ul>
             </h4>
