@@ -23,7 +23,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Últimos 6 Meses</div>
         <div class="panel-body">
-          <div id="expenses-chart" style="height: 250px;"><%= column_chart @column_data, stacked: true, prefix: "$", thousands: ",", height: "250px", legend: "bottom" %></div>
+          <div id="expenses-chart" style="height: 250px;"><%= column_chart @column_data, stacked: true, prefix: "$", thousands: ",", height: "250px", legend: "bottom", library: { chart: { backgroundColor: 'transparent'}, legend: {itemStyle: {color: "white"}}} %></div>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Por Día</div>
         <div class="panel-body">
-          <div id="daily-expenses-chart" style="height: 250px;"><%= column_chart @per_day, height: "250px", prefix: "$", thousands: ",", height: "250px", legend: "bottom" %></div>
+          <div id="daily-expenses-chart" style="height: 250px;"><%= column_chart @per_day, height: "250px", prefix: "$", thousands: ",", height: "250px", legend: "bottom", library: { chart: { backgroundColor: 'transparent'}, legend: {itemStyle: {color: "white"}}} %></div>
         </div>
       </div>
     </div>
@@ -42,15 +42,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Por Categoría</div>
         <div class="panel-body">
-          <div id="category-chart" style="height: 250px;"><%= pie_chart @per_category, prefix: "$", thousands: ",", height: "250px", donut: true, library: {
-            plotOptions: {
-              pie: {
-                dataLabels: {
-                  format: '<b>{point.name} </b> <b>{point.percentage:.1f} %'
-                }
-              }
-            }
-          }%></div>
+          <div id="category-chart" style="height: 250px;"><%= pie_chart @per_category, prefix: "$", thousands: ",", height: "250px", donut: true, library: {plotOptions: {pie: {dataLabels: {format: '<b>{point.name} </b> <b>{point.percentage:.1f} %', color: 'white', style: {textOutline: false, fontSize: '13px'}, connectorColor: 'silver'}}}, chart: {backgroundColor: 'transparent'}}%></div>
         </div>
       </div>
     </div>
@@ -61,7 +53,7 @@
           <div id="month-acc" style="height: 250px;"><%= line_chart [
               {name: @name_last_month, data: @acum_last_month},
               {name: @name_this_month, data: @acum_this_month}
-              ], prefix: "$", thousands: ",", height: "250px", legend: "bottom" %>
+              ], prefix: "$", thousands: ",", height: "250px", legend: "bottom", library: { chart: { backgroundColor: 'transparent'}, legend: {itemStyle: {color: "white"}}, series: [{backgroundColor: "blue"}]}, colors: ["rgb(128, 133, 233)", "rgb(124, 181, 236)"]%>
           </div>
         </div>
       </div>
