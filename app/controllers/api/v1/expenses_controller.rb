@@ -1,7 +1,17 @@
 class Api::V1::ExpensesController < ApplicationController
     protect_from_forgery with: :null_session
     def index
-      render json: Expense.all
+      expenses = Expense.all
+      if params[:category_id].present?
+        expenses =  expenses.where("category_id = ?", params[:category_id])
+      end
+      if params[:type_transaction].present?
+        expenses = expenses.where("type_transaction = ?", params[:type_transaction])
+      end
+      if params[:month].present?
+        expenses =  expenses.where("extract(month from date) = ? AND extract(year from date) = ?", params[:month], params[:year]).order(date: :asc)
+      end
+      render json: expenses
     end
 
     def create
