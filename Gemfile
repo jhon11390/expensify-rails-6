@@ -29,9 +29,9 @@ gem 'chartkick', '~> 3.3', '>= 3.3.1'
 gem 'groupdate', '~> 5.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'faker', '~> 2.12'
 
 group :development, :test do
-  gem 'faker', '~> 2.12'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'minitest-reporters'
