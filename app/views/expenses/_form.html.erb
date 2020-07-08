@@ -30,7 +30,7 @@
             </div>
             <div class="form-group validateConcept">
               <%= f.label :Concept, class: "labelConcept" %>
-              <%= f.text_field :concept, class: "form-control", class: "form-control"%>
+              <%= f.text_field :concept, class: "form-control", class: "form-control", id: "concept"%>
             </div>
             <div class="row">
               <div class="col">
@@ -42,7 +42,7 @@
                   <div class="form-group col-md-6">
                     <%= f.label :Amount %>
                     <% if @expense.new_record? %>
-                      <%= f.number_field :amount, step: 0.01, min: 0, class: "form-control text-right", value: 0%>
+                      <%= f.number_field :amount, step: 0.01, min: 0, class: "form-control text-right", value: 0, id: "amount"%>
                     <% else %>
                       <%= f.number_field :amount, step: 0.01, min: 0, class: "form-control text-right"%>
                     <% end %>
